@@ -3,6 +3,7 @@ const {
   reverseString,
   calculator,
   caesarCipher,
+  analyzeArray,
 } = require("./index.js");
 
 describe("capitalize function", () => {
@@ -34,16 +35,39 @@ describe("calculator object", () => {
 
 describe("caesarCipher function", () => {
   test("should shift character in the string by the given factor", () => {
-    expect(caesarChipher("abc", 1)).toBe("bcd");
-    expect(caesarChipher("xyz", 3)).toBe("abc");
+    expect(caesarCipher("abc", 1)).toBe("bcd");
+    expect(caesarCipher("xyz", 3)).toBe("abc");
   });
   test("should handle wrapping from z to a", () => {
-    expect(caesarChipher("xyz", 1)).toBe("yza");
+    expect(caesarCipher("xyz", 1)).toBe("yza");
   });
   test("should keep the same case", () => {
-    expect(caesarChipher("Hello World", 1)).toBe("Ifmmp Xpsme");
+    expect(caesarCipher("Hello World", 1)).toBe("Ifmmp Xpsme");
   });
   test("should keep punctuation unchanged", () => {
     expect(caesarCipher("Hello, World!", 1)).toBe("Ifmmp, Xpsme!");
+  });
+});
+
+describe("analyzeArray function", () => {
+  test("should return correct object for non-empty array", () => {
+    const inputArray = [1, 8, 3, 4, 2, 6];
+    const expectedResult = {
+      average: 4,
+      min: 1,
+      max: 8,
+      length: 6,
+    };
+    expect(analyzeArray(inputArray)).toEqual(expectedResult);
+  });
+  test("should return correct object for empty array", () => {
+    const inputArray = [];
+    const expectedResult = {
+      average: NaN,
+      min: NaN,
+      max: NaN,
+      length: 0,
+    };
+    expect(analyzeArray(inputArray)).toEqual(expectedResult);
   });
 });
