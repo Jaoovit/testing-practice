@@ -1,4 +1,9 @@
-const { capitalize, reverseString, calculator } = require("./index.js");
+const {
+  capitalize,
+  reverseString,
+  calculator,
+  caesarCipher,
+} = require("./index.js");
 
 describe("capitalize function", () => {
   test("the output is a capitalized word", () => {
@@ -24,5 +29,21 @@ describe("calculator object", () => {
   });
   test("the 6 / 2 is 3", () => {
     expect(calculator.div(6, 2)).toBe(3);
+  });
+});
+
+describe("caesarCipher function", () => {
+  test("should shift character in the string by the given factor", () => {
+    expect(caesarChipher("abc", 1)).toBe("bcd");
+    expect(caesarChipher("xyz", 3)).toBe("abc");
+  });
+  test("should handle wrapping from z to a", () => {
+    expect(caesarChipher("xyz", 1)).toBe("yza");
+  });
+  test("should keep the same case", () => {
+    expect(caesarChipher("Hello World", 1)).toBe("Ifmmp Xpsme");
+  });
+  test("should keep punctuation unchanged", () => {
+    expect(caesarCipher("Hello, World!", 1)).toBe("Ifmmp, Xpsme!");
   });
 });
