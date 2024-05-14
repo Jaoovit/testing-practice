@@ -1,5 +1,7 @@
-const sum = require("./index.js");
+const capitalize = require("./index.js");
 
-test("adds 1 + 2 to equal 3", () => {
-  expect(sum(1, 2)).toBe(3);
+describe("capitalize function", () => {
+  test("the output is a capitalized word", () => {
+    expect(capitalize("test")).toBe("Test");
+  });
 });
